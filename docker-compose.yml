@@ -21,3 +21,10 @@ services:
       POSTGRES_USER: postgresql
       POSTGRES_PASSWORD: 123456
       POSTGRES_DB: EmpDB
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
