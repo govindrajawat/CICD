@@ -24,20 +24,3 @@ services:
       POSTGRES_USER: postgresql
       POSTGRES_PASSWORD: 123456
       POSTGRES_DB: EmpDB
-    
-      
-  grafana:
-    image: grafana/grafana
-    ports:
-      - "3000:3000"
-    networks:
-      - rain
-    depends_on:
-      - db
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=123456
-      - GF_SECURITY_ADMIN_USER=postgres
-      
-    volumes:
-      - grafana-storage:/var/lib/grafana
-    
