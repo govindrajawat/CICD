@@ -8,8 +8,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8081:8080"
-    networks:
-      - rain
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
@@ -18,8 +16,7 @@ services:
   db:
     image: postgres:latest
     restart: always
-    networks:
-      - rain
+ 
     environment:
       POSTGRES_USER: postgresql
       POSTGRES_PASSWORD: 123456
