@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8081:8080"
+    networks:
+      - rain
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
@@ -16,8 +18,26 @@ services:
   db:
     image: postgres:latest
     restart: always
+    networks:
+      - rain
     environment:
       POSTGRES_USER: postgresql
       POSTGRES_PASSWORD: 123456
       POSTGRES_DB: EmpDB
-
+    
+      
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - rain
+    depends_on:
+      - db
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=123456
+      - GF_SECURITY_ADMIN_USER=postgres
+      
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    
