@@ -12,16 +12,13 @@ options.UseNpgsql(builder.Configuration.GetConnectionString("conn")));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-else
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
+// Remove error page in development environment
+// if (env.IsDevelopment())
+// {
+//     app.UseDeveloperExceptionPage();
+// }
+app.UseExceptionHandler("/Home/Error");
+app.UseHsts();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
