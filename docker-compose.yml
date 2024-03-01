@@ -27,7 +27,8 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./grafana:/var/lib/grafana
+      - grafana-storage:/var/lib/grafana
+      
     depends_on:
       - db
 
