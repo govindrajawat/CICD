@@ -9,7 +9,7 @@ services:
     ports:
       - "8081:8080"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - db
 
@@ -36,13 +36,15 @@ services:
     image: sonarqube:latest
     ports:
       - "9000:9000"
+    environment:
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
+      - SONARQUBE_JDBC_USERNAME=sonar
+      - SONARQUBE_JDBC_PASSWORD=sonar
     volumes:
-      - ./sonarqube/conf:/opt/sonarqube/conf
-      - ./sonarqube/data:/opt/sonarqube/data
-      - ./sonarqube/extensions:/opt/sonarqube/extensions
-      - ./sonarqube/logs:/opt/sonarqube/logs
+    - ./sonarqube:/opt/sonarqube/data
     depends_on:
       - db
 
 volumes:
   grafana-storage:
+  sonarqube_data:
