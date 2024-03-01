@@ -28,7 +28,7 @@ services:
       - "3000:3000"
     volumes:
       - grafana-storage:/var/lib/grafana
-      
+
     depends_on:
       - db
 
@@ -43,3 +43,6 @@ services:
       - ./sonarqube/logs:/opt/sonarqube/logs
     depends_on:
       - db
+
+volumes:
+  grafana-storage:
